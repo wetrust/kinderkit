@@ -1,5 +1,5 @@
-ABCDEFGHIJKLLM
-NÑOPQRSTUVWXYZ
+//ABCDEFGHIJKLLM
+//NÑOPQRSTUVWXYZ
 
 var Wheight = window.innerHeight - 3;
 var AltoH = Wheight;
