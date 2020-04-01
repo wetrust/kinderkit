@@ -1,7 +1,7 @@
 //ABCDEFGHIJKLLM
 //NÑOPQRSTUVWXYZ
 
-var Wheight = window.innerHeight - 3;
+var Wheight = window.innerHeight;
 var AltoH = Wheight;
 var AnchoW = Wheight * 1.78;
 
