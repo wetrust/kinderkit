@@ -1,102 +1,70 @@
 //ABCDEFGHIJKLLM
 //NÑOPQRSTUVWXYZ
 
-var Wheight = window.innerHeight;
-var AltoH = Wheight;
-var AnchoW = Wheight * 1.78;
+class circo{
+  Wheight = window.innerHeight;
+  AltoH = this.Wheight;
+  AnchoW = this.Wheight * 1.78;
+  canvas = document.getElementsByTagName("canvas")[0];
+  ctx = this.canvas.getContext('2d');
+  alpha = 1.0;
 
-document.getElementsByTagName("canvas")[0].height = AltoH;
-document.getElementsByTagName("canvas")[0].width = AnchoW;
+  run(){
+    this.preparar();
+    this.entrada();
+  }
 
-var canvas = document.getElementsByTagName("canvas")[0];
-var ctx = canvas.getContext('2d');
-var beto = document.getElementById('beto');
-var alpha = 1.0;
+  preparar(){
+    document.getElementsByTagName("canvas")[0].height = this.AltoH;
+    document.getElementsByTagName("canvas")[0].width = this.AnchoW;
 
-        //anchoW 870 original del canvas
-        //altoH  489 original del canvas
-        //416 ancho original del video
-        //332 alto original del video
-        //115 posicion ancho original
-        //7 posicion alto original
+    document.getElementsByTagName("body")[0].onresize = this.canvasResize;
+  }
 
-        //el ancho y alto está en relacion al tamaño del canvas
-        //la posicion tambien
-        const anchoW_video_beto = 870 / 416;
-        const altoH_video_beto = 489 / 332;
-        const anchoW_pos_beto = 870 / 156;
-        const altoH_pos_beto = 489 / 7; 
-
-document.getElementsByTagName("body")[0].onresize = function(){
-    Wheight = window.innerHeight - 20;
-    AltoH = Wheight;
-    AnchoW = Wheight * 1.78;
+  canvasResize(){
+    this.Wheight = window.innerHeight - 20;
+    this.AltoH = this.Wheight;
+    this.AnchoW = this.Wheight * 1.78;
 
     document.getElementsByTagName("canvas")[0].height = AltoH;
     document.getElementsByTagName("canvas")[0].width = AnchoW; 
+  }
+
+  entrada(){
+
+  }
+  
 }
 
-function fadeOutBeto() {
-        
-    if (alpha <= 0) {
-        return;
-    }         
-        
-    requestAnimationFrame(fadeOutBeto);
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    ctx.globalAlpha = alpha;
+class kinderkit{
+  run(){
+    document.getElementById("btn.bienvenida").onclick = this.bienvenida;
+    document.getElementById("bienvenida").addEventListener('ended', this.end, true);
+  }
 
-    ctx.drawImage(beto, 0, 0, 416, 332, AnchoW / anchoW_pos_beto, AltoH / altoH_pos_beto, AnchoW / anchoW_video_beto , AltoH / altoH_video_beto);
+  bienvenida(){
+    let btn = document.getElementById("btn.bienvenida");
+    btn.classList.add("d-none");
+    let video = document.getElementById("bienvenida");
+    video.classList.remove("d-none");
+    video.muted = false;
+    video.play();
+  }
 
-    alpha += -0.01;
-}  
+  end(){
+    let app = new circo;
 
+    let btn = document.getElementById("bienvenida.container");
+    btn.classList.add("d-none");
 
-function beto_entrada_play() {
-    var $this = this; //cache
-    (function loop() {
+    let canvas = document.getElementsByTagName("canvas")[0];
+    canvas.classList.add("d-block","mx-auto");
+    canvas.classList.remove("d-none");
 
-      if (!$this.paused && !$this.ended) {
-        ctx.drawImage($this, 0, 0, 416, 332, AnchoW / anchoW_pos_beto, AltoH / altoH_pos_beto, AnchoW / anchoW_video_beto , AltoH / altoH_video_beto);
-        setTimeout(loop, 1000 / 30); // drawing at 30fps
-      }
-      else if ($this.ended){
-        beto.removeEventListener('play', beto_entrada_play, true);
-        beto_salida();
-      }
-    })();
-};
-
-function beto_entrada(){
-
-    beto.addEventListener('play', beto_entrada_play, true);
-
-    beto.src = "alfabeto/vi/beto/entra_1.mp4";
-    beto.load();
-    beto.muted = true; 
-    beto.play();
+    app.run();
+  }
 }
 
-function beto_salida(){
+let app = new kinderkit;
 
-    beto.addEventListener('play', function() {
-        var $this = this; //cache
-        (function loop() {
-    
-          if (!$this.paused && !$this.ended) {
-            ctx.drawImage($this, 0, 0, 416, 332, AnchoW / anchoW_pos_beto, AltoH / altoH_pos_beto, AnchoW / anchoW_video_beto , AltoH / altoH_video_beto);
-            setTimeout(loop, 1000 / 30); // drawing at 30fps
-          }
-          else if ($this.ended){
-            fadeOutBeto();
-          }
-        })();
-    }, 0);
-
-    beto.src = "alfabeto/vi/beto/sale_1.mp4";
-    beto.load();
-    beto.muted = true; 
-    beto.play();
-}
-
-beto_entrada();
+app.run();

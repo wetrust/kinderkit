@@ -1,26 +1,44 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hello, world!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <title>KinderKit</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
-        body{
-            background-color:#0000aa;
-            overflow: hidden;
-        }
-        canvas{
-            background-image: url('images/bg.jpg');
-            background-repeat: no-repeat;
-            background-position: top center;
-            background-size:contain;
-        }
+      body{
+          background-color:#000021;
+          overflow: hidden;
+      }
+      .btn-kinder{
+        color: #fff;
+        background-color: #ff0000;
+        border-color: #ff0000;
+      }
+      .btn-kinder:hover{
+        color: #ff0;
+        background-color: #ff0000;
+        border-color: #ff0000;
+      }
+      canvas{
+        background-image: url('images/bg.jpg');
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size:contain;
+      }
     </style>
   </head>
   <body>
-    <canvas class="d-block mx-auto"></canvas>
+    <section class="container" id="bienvenida.container">
+      <div class="d-flex justify-content-center m-lg-5">
+        <img src="images/kinderkit.png" class="">
+      </div>
+      <div class="d-flex justify-content-center m-lg-5">
+        <button type="button" class="btn btn-kinder my-lg-5" id="btn.bienvenida"><span class="display-4">Entrar</span></button>
+        <video id="bienvenida" class="d-none" src="intro_vi/intro.mp4"></video>
+      </div>
+    </section>
+    <canvas class="d-none"></canvas>
     <video id="alfa" class="d-none"></video>
     <video id="beto" class="d-none"></video>
     <video id="central" class="d-none"></video>
